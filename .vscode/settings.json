@@ -1,0 +1,52 @@
+{
+    "editor.rulers": [
+        120
+    ],
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "isort.args": [
+        "--py",
+        "310",
+        "--profile",
+        "black"
+    ],
+    "ruff.format.args": [
+        "--config=pyproject.toml"
+    ],
+    "flake8.args": [
+        "--max-complexity",
+        "10",
+        "--max-line-length",
+        "120"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "[yaml]": {
+            "editor.defaultFormatter": "redhat.vscode-yaml"
+        },
+        "[json]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+    },
+    "git.autofetch": true,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "jupyter.askForKernelRestart": false,
+    "dev.containers.copyGitConfig": false,
+    "dev.containers.gitCredentialHelperConfigLocation": "none",
+    "files.exclude": {
+        "**/.git": false
+    },
+    "editor.inlineSuggest.enabled": true,
+    "git.suggestSmartCommit": false,
+    "yaml.format.bracketSpacing": false,
+    "yaml.format.printWidth": 120,
+    "prettier.printWidth": 120,
+    "editor.formatOnSave": true,
+    "editor.guides.bracketPairs": true,
+    "editor.defaultFormatter": "charliermarsh.ruff"
+}
