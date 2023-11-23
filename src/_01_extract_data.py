@@ -26,6 +26,7 @@ def get_file_info(
     start_dates = []
     end_dates = []
     cities = []
+    country_subentities = []
     overall_contract_amounts = []
     total_amounts = []
     tax_ex_amounts = []
@@ -66,14 +67,21 @@ def get_file_info(
         if total_amount is not None and total_amount.text is not None:
             total_amount = total_amount.text
         else:
-            total_amount = 'No date available'
+            total_amount = 'No amount available'
 
         tax_ex_amount = entry.find('.//cbc:TaxExclusiveAmount', namespaces)
 
         if tax_ex_amount is not None and tax_ex_amount.text is not None:
             tax_ex_amount = tax_ex_amount.text
         else:
-            tax_ex_amount = 'No date available'
+            tax_ex_amount = 'No amount available'
+
+        country_subentity = entry.find('.//cbc:CountrySubentity', namespaces)
+
+        if country_subentity is not None and country_subentity is not None:
+            country_subentity = country_subentity.text
+        else:
+            country_subentity = 'Not country subentity available'
 
         ids.append(id)
         titles.append(title)
@@ -85,6 +93,7 @@ def get_file_info(
         overall_contract_amounts.append(overall_contract_amount)
         total_amounts.append(total_amount)
         tax_ex_amounts.append(tax_ex_amount)
+        country_subentities.append(country_subentity)
 
     entries['id'] = ids
     entries['postcode'] = postcodes
@@ -92,6 +101,7 @@ def get_file_info(
     entries['update date'] = update_dates
     entries['start date'] = start_dates
     entries['end_date'] = end_dates
+    entries['country subentity'] = country_subentities
     entries['city'] = cities
     entries['estimate overall contract amount'] = overall_contract_amounts
     entries['total amount'] = total_amounts
@@ -102,11 +112,11 @@ def get_file_info(
 
 def extract_data(folder=r'C:\Users\diego\Desktop\licitaciones\data'):
     files = os.listdir(folder)
-    progress = tqdm(files[2:5])  # just first 10 only to debug
+    progress = tqdm(files[0:3])  # just first 10 only to debug
     dfs = []
     for f in progress:
         fpath = os.path.join(folder, f)
         entry = get_file_info(fpath)
         dfs.append(entry)
-    dataframe = pl.concat(dfs)
-    return dataframe
+    dataframes = pl.concat(dfs)
+    return dataframes
