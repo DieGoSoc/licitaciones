@@ -119,4 +119,6 @@ def extract_data(folder=r'C:\Users\diego\Desktop\licitaciones\data'):
         entry = get_file_info(fpath)
         dfs.append(entry)
     dataframes = pl.concat(dfs)
+    csv_file_path = 'licitaciones.csv'
+    dataframes.write_csv(csv_file_path)
     return dataframes
