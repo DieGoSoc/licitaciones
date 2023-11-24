@@ -1,6 +1,10 @@
-from _01_extract_data import extract_data
-from _01_extract_data import get_file_info
+import polars as pl
 from pandas import pandas as pd
 
-if __name__ == '__main__':
-    print(extract_data())
+from _00_download_data import download_data
+from _01_unzip_data import unzip_data
+from _02_extract_data import extract_data, get_file_info
+
+download_data()
+unzip_data()
+extract_data()
